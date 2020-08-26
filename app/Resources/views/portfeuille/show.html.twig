@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Portfeuille</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ portfeuille.id }}</td>
+            </tr>
+            <tr>
+                <th>Fullname</th>
+                <td>{{ portfeuille.fullName }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{% if portfeuille.birthDate %}{{ portfeuille.birthDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ portfeuille.email }}</td>
+            </tr>
+            <tr>
+                <th>Education1</th>
+                <td>{{ portfeuille.education1 }}</td>
+            </tr>
+            <tr>
+                <th>Descrip1</th>
+                <td>{{ portfeuille.descrip1 }}</td>
+            </tr>
+            <tr>
+                <th>Education2</th>
+                <td>{{ portfeuille.education2 }}</td>
+            </tr>
+            <tr>
+                <th>Descrp2</th>
+                <td>{{ portfeuille.descrp2 }}</td>
+            </tr>
+            <tr>
+                <th>Education3</th>
+                <td>{{ portfeuille.education3 }}</td>
+            </tr>
+            <tr>
+                <th>Descrp3</th>
+                <td>{{ portfeuille.descrp3 }}</td>
+            </tr>
+            <tr>
+                <th>Workexperience1</th>
+                <td>{{ portfeuille.workExperience1 }}</td>
+            </tr>
+            <tr>
+                <th>Descrp4</th>
+                <td>{{ portfeuille.descrp4 }}</td>
+            </tr>
+            <tr>
+                <th>Workexperience2</th>
+                <td>{{ portfeuille.workExperience2 }}</td>
+            </tr>
+            <tr>
+                <th>Descrip5</th>
+                <td>{{ portfeuille.descrip5 }}</td>
+            </tr>
+            <tr>
+                <th>Workexperience3</th>
+                <td>{{ portfeuille.workExperience3 }}</td>
+            </tr>
+            <tr>
+                <th>Descrip6</th>
+                <td>{{ portfeuille.descrip6 }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ portfeuille.photo }}</td>
+            </tr>
+            <tr>
+                <th>Skill1</th>
+                <td>{{ portfeuille.skill1 }}</td>
+            </tr>
+            <tr>
+                <th>Pourcentage1</th>
+                <td>{{ portfeuille.pourcentage1 }}</td>
+            </tr>
+            <tr>
+                <th>Skill2</th>
+                <td>{{ portfeuille.skill2 }}</td>
+            </tr>
+            <tr>
+                <th>Pourcent2</th>
+                <td>{{ portfeuille.pourcent2 }}</td>
+            </tr>
+            <tr>
+                <th>Skill3</th>
+                <td>{{ portfeuille.skill3 }}</td>
+            </tr>
+            <tr>
+                <th>Pourcent3</th>
+                <td>{{ portfeuille.pourcent3 }}</td>
+            </tr>
+            <tr>
+                <th>Skill4</th>
+                <td>{{ portfeuille.skill4 }}</td>
+            </tr>
+            <tr>
+                <th>Pourcent</th>
+                <td>{{ portfeuille.pourcent }}</td>
+            </tr>
+            <tr>
+                <th>Skill5</th>
+                <td>{{ portfeuille.skill5 }}</td>
+            </tr>
+            <tr>
+                <th>Pourcent5</th>
+                <td>{{ portfeuille.pourcent5 }}</td>
+            </tr>
+            <tr>
+                <th>Interest1</th>
+                <td>{{ portfeuille.interest1 }}</td>
+            </tr>
+            <tr>
+                <th>Descript1</th>
+                <td>{{ portfeuille.descript1 }}</td>
+            </tr>
+            <tr>
+                <th>Interest2</th>
+                <td>{{ portfeuille.interest2 }}</td>
+            </tr>
+            <tr>
+                <th>Descript2</th>
+                <td>{{ portfeuille.descript2 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('portfeuille_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('portfeuille_edit', { 'id': portfeuille.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

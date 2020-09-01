@@ -37,6 +37,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+    - 'bootstrap_4_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -71,3 +73,18 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+        options:    []
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    service:                               # this lines
+        mailer: fos_user.mailer.twig_swift
+    from_email:
+        address: "ahmed.zayani@esprit.tn"
+        sender_name: "ahmed"

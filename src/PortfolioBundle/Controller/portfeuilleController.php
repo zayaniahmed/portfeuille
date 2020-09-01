@@ -73,10 +73,24 @@ class portfeuilleController extends Controller
     public function showAction(portfeuille $portfeuille)
     {
         $deleteForm = $this->createDeleteForm($portfeuille);
+        $em = $this->getDoctrine()->getManager();
+        $user=$this->getUser();
 
-        return $this->render('portfeuille/show.html.twig', array(
+        $educations = $em->getRepository('PortfolioBundle:education')->findAll();
+        $contacts = $em->getRepository('PortfolioBundle:contact')->findAll();
+        $interests = $em->getRepository('PortfolioBundle:interest')->findAll();
+        $skills = $em->getRepository('PortfolioBundle:skills')->findAll();
+        $workexperiences = $em->getRepository('PortfolioBundle:workexperience')->findAll();
+
+        return $this->render('user.html.twig', array(
             'portfeuille' => $portfeuille,
+            'educations' =>$educations,
+            'contacts'=>$contacts,
+            'skills' => $skills,
+            'workexperiences' => $workexperiences,
+            'interests' => $interests,
             'delete_form' => $deleteForm->createView(),
+            'user' => $user,
         ));
     }
 
@@ -91,8 +105,13 @@ class portfeuilleController extends Controller
         $deleteForm = $this->createDeleteForm($portfeuille);
         $editForm = $this->createForm('PortfolioBundle\Form\portfeuilleType', $portfeuille);
         $editForm->handleRequest($request);
+        $user=$this->getUser();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $file = $editForm ['photo']->getData();
+            $newImageName=$file->getClientOriginalName();
+            $portfeuille->setPhoto($newImageName);
+            $file->move($this->getParameter('image_directory'),$newImageName);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('portfeuille_edit', array('id' => $portfeuille->getId()));
@@ -102,6 +121,7 @@ class portfeuilleController extends Controller
             'portfeuille' => $portfeuille,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'user' => $user,
         ));
     }
 
@@ -139,5 +159,17 @@ class portfeuilleController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    public function createpdfAction(){
+        $this->get('knp_snappy.pdf')->generateFromHtml(
+            $this->renderView(
+                'show.html.twig',
+                array(
+                    "title"  => "awesome pdf title"
+                )
+            )
+
+        );
+        return $this->redirectToRoute('portfeuille_createpdf');
     }
 }

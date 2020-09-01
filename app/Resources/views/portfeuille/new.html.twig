@@ -1,7 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'tamplate.html.twig' %}
 
 {% block body %}
-    <h1>Portfeuille creation</h1>
+
+
+       <div>
     {% if form is defined %}
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -12,5 +14,5 @@
         <li>
             <a href="{{ path('portfeuille_index') }}">Back to the list</a>
         </li>
-    </ul>
+    </ul></div>
 {% endblock %}

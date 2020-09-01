@@ -1,80 +1,22 @@
-{% extends 'base.html.twig' %}
+{% extends 'tamplate.html.twig' %}
 
 {% block body %}
-    <h1>Portfeuilles list</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+
                 <th>Fullname</th>
-                <th>Birthdate</th>
-                <th>Email</th>
-                <th>Education1</th>
-                <th>Descrip1</th>
-                <th>Education2</th>
-                <th>Descrp2</th>
-                <th>Education3</th>
-                <th>Descrp3</th>
-                <th>Workexperience1</th>
-                <th>Descrp4</th>
-                <th>Workexperience2</th>
-                <th>Descrip5</th>
-                <th>Workexperience3</th>
-                <th>Descrip6</th>
-                <th>Photo</th>
-                <th>Skill1</th>
-                <th>Pourcentage1</th>
-                <th>Skill2</th>
-                <th>Pourcent2</th>
-                <th>Skill3</th>
-                <th>Pourcent3</th>
-                <th>Skill4</th>
-                <th>Pourcent</th>
-                <th>Skill5</th>
-                <th>Pourcent5</th>
-                <th>Interest1</th>
-                <th>Descript1</th>
-                <th>Interest2</th>
-                <th>Descript2</th>
+
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for portfeuille in portfeuilles %}
             <tr>
-                <td><a href="{{ path('portfeuille_show', { 'id': portfeuille.id }) }}">{{ portfeuille.id }}</a></td>
+
                 <td>{{ portfeuille.fullName }}</td>
-                <td>{% if portfeuille.birthDate %}{{ portfeuille.birthDate|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ portfeuille.email }}</td>
-                <td>{{ portfeuille.education1 }}</td>
-                <td>{{ portfeuille.descrip1 }}</td>
-                <td>{{ portfeuille.education2 }}</td>
-                <td>{{ portfeuille.descrp2 }}</td>
-                <td>{{ portfeuille.education3 }}</td>
-                <td>{{ portfeuille.descrp3 }}</td>
-                <td>{{ portfeuille.workExperience1 }}</td>
-                <td>{{ portfeuille.descrp4 }}</td>
-                <td>{{ portfeuille.workExperience2 }}</td>
-                <td>{{ portfeuille.descrip5 }}</td>
-                <td>{{ portfeuille.workExperience3 }}</td>
-                <td>{{ portfeuille.descrip6 }}</td>
-                <td><div>
-                        <img src="{{ asset('web/uploads/annonce/' ~ portfeuille.getPhoto) }}"  height="250" width="250"  alt="...">
-                    </div></td>                <td>{{ portfeuille.skill1 }}</td>
-                <td>{{ portfeuille.pourcentage1 }}</td>
-                <td>{{ portfeuille.skill2 }}</td>
-                <td>{{ portfeuille.pourcent2 }}</td>
-                <td>{{ portfeuille.skill3 }}</td>
-                <td>{{ portfeuille.pourcent3 }}</td>
-                <td>{{ portfeuille.skill4 }}</td>
-                <td>{{ portfeuille.pourcent }}</td>
-                <td>{{ portfeuille.skill5 }}</td>
-                <td>{{ portfeuille.pourcent5 }}</td>
-                <td>{{ portfeuille.interest1 }}</td>
-                <td>{{ portfeuille.descript1 }}</td>
-                <td>{{ portfeuille.interest2 }}</td>
-                <td>{{ portfeuille.descript2 }}</td>
+
                 <td>
                     <ul>
                         <li>

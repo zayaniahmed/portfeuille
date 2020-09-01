@@ -1,13 +1,254 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- Simple Page Needs
+    ================================================== -->
+    <title>Eportfolio</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Mat - Resume & vCard HTML Template">
+    <meta name="keywords" content="personal, vcard, portfolio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon
+    ================================================== -->
+    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"  type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/cubeportfolio.min.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/yellow.css') }}" type="text/css" id="color"/>
+
+
+    <!-- Google Web fonts
+    ================================================== -->
+    <link href="{{ asset('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900') }}" rel="stylesheet">
+
+    <!-- Font Icons
+    ================================================== -->
+    <link rel="stylesheet" href="{{ asset('icon-fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('icon-fonts/web-design/flaticon.css') }}"  type="text/css"/>
+
+    <!--[if lt IE 9]>
+    <script src="{{ asset('http://html5shim.googlecode.com/svn/trunk/html5.js') }}"></script>
+    <![endif]-->
+
+</head>
+<body>
+<!-- Preloading -->
+<div id="preloader">
+    <div class="spinner">
+    </div>
+</div>
+
+<!-- Wrapper -->
+<div class="wrapper top_60 container">
+    <div class="row">
+
+        <!-- Profile Section
+        ================================================== -->
+        <div class="col-lg-3 col-md-4">
+            <div class="profile">
+                {% for portfeuille in portfeuille %}
+                <figure class="profile-image">
+                    <img src="{{ asset('web/uploads/annonce/' ~ portfeuille.getPhoto) }}" alt="...">
+                </figure>
+                <ul class="profile-information">
+                    <li></li>
+                    <li><p><span>Name:</span> {{ portfeuille.fullName }}</p></li>
+                    <li><p><span>Birthday:</span> {% if portfeuille.birthDate %}{{ portfeuille.birthDate|date('Y-m-d') }}{% endif %}</p></li>
+
+                </ul>
+
+            </div>
+        </div>
+
+        <!-- Page Tab Container Div -->
+        <div id="ajax-tab-container" class="col-lg-9 col-md-8 tab-container">
+
+            <!-- Header
+            ================================================== -->
+            <div class="row">
+                <header class="col-md-12">
+                    <nav>
+                        <div class="row">
+                            <!-- navigation bar -->
+                            <div class="col-md-8 col-sm-8 col-xs-4">
+                                <ul class="tabs">
+                                    <li class="tab">
+                                        <a class="home-btn" href="#home"><i class="fa fa-home" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li class="tab"><a href="#resume">RESUME</a></li>
+
+                                    <li class="tab"><a href="#contact">CONTACT</a></li>
+                                    <li class="tab">
+                                        <a href="{{ asset('login')}}">LOGIN</a>
+                                    </li>
+                                </ul>
+
+
+
+                            </div>
+
+                        </div>
+                    </nav>
+                </header>
+
+                <!-- Page Content
+                ================================================== -->
+                <div class="col-md-12">
+                    <div id="content" class="panel-container">
+
+                        <!-- Home Page
+                        ================================================== -->
+                        <div id="home">
+                            <!-- Text Section -->
+                            <div class="row">
+                                <section class="about-me line col-md-12 padding_30 padbot_45">
+                                    <div class="section-title"><span></span><h2>About Me</h2></div>
+                                    <p class="top_30">{{ portfeuille.aboutme }}.
+                                    </p>
+                                </section>
+                            </div>{% endfor %}
+                            <!-- My Services Section -->
+                            <div class="row">
+                                <section class="services line graybg col-md-12 padding_50 padbot_50">
+                                    <div class="section-title bottom_45"><span></span><h2>My interests</h2></div>
+                                    <div class="row">
+                                        <!-- a service -->
+                                        {% for interest in interests %}
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="service">
+
+                                                <span class="title">{{ interest.interest }}</span>
+
+
+                                                <p class="little-text">{{ interest.description }}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    {% endfor %}
+                                </section>
+                            </div>
+                            <!-- Skills Section -->
+                            <div class="row">
+                                <section class="design-skills col-md-6 padding_60 padbot_50">
+                                    <div class="section-title bottom_45"><span></span><h2>My skills</h2></div>
+                                    {% for skill in skills %}
+                                        <ul class="skill-list">
+                                            <li>
+                                                <h3>{{ skill.skill }}</h3>
+                                                <div class="progress">
+                                                    <div class="percentage" style="width:{{ skill.pourcentage }}%;"></div>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    {% endfor %}
+                                </section>
+                            </div>
+                        </div>
+
+                        <!-- Resume Page
+                        ================================================== -->
+                        <div id="resume">
+                            <!-- Resume Section -->
+                            <div class="row">
+                                <section class="education">
+                                    <div class="section-title top_30"><span></span><h2>Resume</h2></div>
+                                    <div class="row">
+                                        <!-- Working History -->
+                                        <div class="working-history col-md-6 padding_15 padbot_30">
+                                            <ul class="timeline col-md-12 top_30">
+                                                <li><i class="fa fa-suitcase" aria-hidden="true"></i><h2 class="timeline-title">Working History</h2></li>
+                                                <!-- a work -->
+                                                {% for workexperience in workexperiences %}
+                                                    <li><h3 class="line-title">{{ workexperience.expeiences }}</h3>
+                                                        <span>{% if workexperience.dateDebut %}{{ workexperience.dateDebut|date('Y-m-d') }}{% endif %} - {% if workexperience.dateFin %}{{ workexperience.dateFin|date('Y-m-d') }}{% endif %}</span>
+                                                        <p class="little-text">{{ workexperience.descrpiton }}</p>
+                                                    </li>
+                                                    <!-- a work -->
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <!-- Education History -->
+                                        <div class="education-history col-md-6 padding_15 padbot_30">
+                                            <ul class="timeline col-md-12 top_30">
+                                                <li><i class="fa fa-graduation-cap" aria-hidden="true"></i><h2 class="timeline-title">Education History</h2></li>
+                                                <!-- a work -->
+                                                {% for education in educations %}
+                                                    <li><h3 class="line-title">{{ education.typeofeducaion }}</h3>
+                                                        <span>{% if education.dateDeb %}{{ education.dateDeb|date('Y-m-d') }}{% endif %} - {% if education.dateFin %}{{ education.dateFin|date('Y-m-d') }}{% endif %}</span>
+                                                        <p class="little-text">{{ education.descrption }}</p>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <!-- Clients Section -->
+
+                            <!-- Testimonials -->
+
+                            <!-- Portfolio Page
+                            ================================================== -->
+                            <!-- Blog Page
+                            ================================================== -->
+
+
+                            <!-- Contact Page
+                            ================================================== -->
+                            <div id="contact">
+                                <div class="row">
+                                    <!-- Contact Form -->
+
+                                    <!-- Contact Informations -->
+                                    <section class="contact-info col-md-6 padding_30 padbot_45">
+                                        <div class="section-title top_15 bottom_30"><span></span><h2>Contact Informations</h2></div>
+                                        {% for contact in contacts %}
+                                            <ul>
+                                                <li><span>Address:</span> {{ contact.adress }}</li>
+                                                <li><span>Phone:</span> {{ contact.phone }}</li>
+                                                <li><span>E-mail:</span> {{ contact.mail }}</li>
+                                            </ul>
+                                        {% endfor %}
+                                    </section>
+                                    <!-- Contact Map -->
+
+                                </div>
+                            </div>
+
+                        </div><!-- Content - End -->
+                    </div> <!-- col-md-12 end -->
+                </div><!-- row end -->
+                <!-- Footer
+                ================================================== -->
+
+            </div>
+        </div> <!-- Tab Container - End -->
+    </div> <!-- Row - End -->
+</div> <!-- Wrapper - End -->
+
+<!-- Javascripts
+================================================== -->
+<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+<script src="{{ asset('js/jquery.cubeportfolio.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.easytabs.min.js') }}"></script>
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+<!-- for color alternatives -->
+<script src="{{ asset('js/jquery.cookie-1.4.1.min.js') }}"></script>
+<script src="{{ asset('js/Demo.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('css/Demo.min.css') }}"  type="text/css"/>
+
+
+</body>
 </html>

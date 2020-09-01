@@ -1,148 +1,120 @@
-{% extends 'base.html.twig' %}
+{% extends 'tamplate.html.twig' %}
 
 {% block body %}
     <h1>Portfeuille</h1>
 
+    <div>
+        <img src="{{ asset('web/uploads/annonce/' ~ portfeuille.getPhoto) }}"  height="250" width="250"  alt="...">
+    </div>
+
     <table>
         <tbody>
+
             <tr>
-                <th>Id</th>
-                <td>{{ portfeuille.id }}</td>
-            </tr>
-            <tr>
-                <th>Fullname</th>
+
                 <td>{{ portfeuille.fullName }}</td>
             </tr>
             <tr>
                 <th>Birthdate</th>
                 <td>{% if portfeuille.birthDate %}{{ portfeuille.birthDate|date('Y-m-d') }}{% endif %}</td>
             </tr>
+
             <tr>
-                <th>Email</th>
-                <td>{{ portfeuille.email }}</td>
+                <th>Education</th>
+
+                {% for education in educations %}
+
+                <tr>
+                <th style="color: #00b44e">{{ education.typeofeducaion }}</th></tr>
+            <tr>
+                <td>{% if education.dateDeb %}{{ education.dateDeb|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if education.dateFin %}{{ education.dateFin|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Education1</th>
-                <td>{{ portfeuille.education1 }}</td>
+                <td>{{ education.descrption }}</td></tr>
+
+            {% endfor %}
+
+
+            <tr>
+                <th>Workexperience</th>
+                {% if workexperiences is defined %}
+                {% for workexperience in workexperiences %}
+            <tr>
+                <th style="color: #00b44e">{{ workexperience.expeiences }}</th></tr>
+
+                <tr>
+                    <td>{% if workexperience.dateDebut %}{{ workexperience.dateDebut|date('Y-m-d') }}{% endif %}</td>
+                    <td>{% if workexperience.dateFin %}{{ workexperience.dateFin|date('Y-m-d') }}{% endif %}</td>
+                </tr>
+                <tr>
+                <td>{{ workexperience.descrpiton }}</td>
+                </tr>
+
+            {% endfor %}{% else %}
+                No workexperiences found.
+            {% endif %}
+            <tr>
+                <th>Skills</th>
+                {% if skills is defined %}
+                {% for skill in skills %}
             </tr>
             <tr>
-                <th>Descrip1</th>
-                <td>{{ portfeuille.descrip1 }}</td>
+
+                    <td>{{ skill.skill }}</td>
+
+                <td class="progress-bar bg-primary" style="width:{{ skill.pourcentage }} ">{{ skill.pourcentage }}/100</td>
+            </tr>
+
+                {% endfor %}
+            {% else %}
+                No skills found.
+            {% endif %}
+
+            <tr>
+                <th>Interests</th>
+                {% if interests is defined %}
+                {% for interest in interests %}
             </tr>
             <tr>
-                <th>Education2</th>
-                <td>{{ portfeuille.education2 }}</td>
+
+                <th style="color: #00b44e">{{ interest.interest }}</th>
             </tr>
             <tr>
-                <th>Descrp2</th>
-                <td>{{ portfeuille.descrp2 }}</td>
+                <td>{{ interest.description }}</td>
             </tr>
+            {% endfor %}
+            {% else %}
+                No interests found.
+            {% endif %}
             <tr>
-                <th>Education3</th>
-                <td>{{ portfeuille.education3 }}</td>
+                <th>contact</th>
+
+                {% if contacts is defined %}
+                {% for contact in contacts %}
             </tr>
-            <tr>
-                <th>Descrp3</th>
-                <td>{{ portfeuille.descrp3 }}</td>
-            </tr>
-            <tr>
-                <th>Workexperience1</th>
-                <td>{{ portfeuille.workExperience1 }}</td>
-            </tr>
-            <tr>
-                <th>Descrp4</th>
-                <td>{{ portfeuille.descrp4 }}</td>
-            </tr>
-            <tr>
-                <th>Workexperience2</th>
-                <td>{{ portfeuille.workExperience2 }}</td>
-            </tr>
-            <tr>
-                <th>Descrip5</th>
-                <td>{{ portfeuille.descrip5 }}</td>
-            </tr>
-            <tr>
-                <th>Workexperience3</th>
-                <td>{{ portfeuille.workExperience3 }}</td>
-            </tr>
-            <tr>
-                <th>Descrip6</th>
-                <td>{{ portfeuille.descrip6 }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td>{{ portfeuille.photo }}</td>
-            </tr>
-            <tr>
-                <th>Skill1</th>
-                <td>{{ portfeuille.skill1 }}</td>
-            </tr>
-            <tr>
-                <th>Pourcentage1</th>
-                <td>{{ portfeuille.pourcentage1 }}</td>
-            </tr>
-            <tr>
-                <th>Skill2</th>
-                <td>{{ portfeuille.skill2 }}</td>
-            </tr>
-            <tr>
-                <th>Pourcent2</th>
-                <td>{{ portfeuille.pourcent2 }}</td>
-            </tr>
-            <tr>
-                <th>Skill3</th>
-                <td>{{ portfeuille.skill3 }}</td>
-            </tr>
-            <tr>
-                <th>Pourcent3</th>
-                <td>{{ portfeuille.pourcent3 }}</td>
-            </tr>
-            <tr>
-                <th>Skill4</th>
-                <td>{{ portfeuille.skill4 }}</td>
-            </tr>
-            <tr>
-                <th>Pourcent</th>
-                <td>{{ portfeuille.pourcent }}</td>
-            </tr>
-            <tr>
-                <th>Skill5</th>
-                <td>{{ portfeuille.skill5 }}</td>
-            </tr>
-            <tr>
-                <th>Pourcent5</th>
-                <td>{{ portfeuille.pourcent5 }}</td>
-            </tr>
-            <tr>
-                <th>Interest1</th>
-                <td>{{ portfeuille.interest1 }}</td>
-            </tr>
-            <tr>
-                <th>Descript1</th>
-                <td>{{ portfeuille.descript1 }}</td>
-            </tr>
-            <tr>
-                <th>Interest2</th>
-                <td>{{ portfeuille.interest2 }}</td>
-            </tr>
-            <tr>
-                <th>Descript2</th>
-                <td>{{ portfeuille.descript2 }}</td>
-            </tr>
+
+                <tr><th style="color: #00b44e">adress</th></tr>
+                <tr><td>{{ contact.adress }}</td></tr>
+                <th style="color: #00b44e">phone</th>
+                <tr><td>{{ contact.phone }}</td></tr>
+                <th style="color: #00b44e">mail</th>
+                    <tr><td>{{ contact.mail }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                No contacts found.
+            {% endif %}
+
         </tbody>
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('portfeuille_index') }}">Back to the list</a>
-        </li>
+
         <li>
             <a href="{{ path('portfeuille_edit', { 'id': portfeuille.id }) }}">Edit</a>
         </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+
+
     </ul>
 {% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'tamplate.html.twig' %}
+
+{% block body %}
+    <h1 style="color: #016fcd">Workexperiences list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Expeiences</th>
+                <th>Descrpiton</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for workexperience in workexperiences %}
+            <tr>
+                <td>{{ workexperience.expeiences }}</td>
+                <td>{{ workexperience.descrpiton }}</td>
+                <td>{% if workexperience.dateDebut %}{{ workexperience.dateDebut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if workexperience.dateFin %}{{ workexperience.dateFin|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('workexperience_delete', { 'id': workexperience.id }) }}">delete</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('workexperience_edit', { 'id': workexperience.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('workexperience_new') }}">Create a new workexperience</a>
+        </li>
+    </ul>
+{% endblock %}

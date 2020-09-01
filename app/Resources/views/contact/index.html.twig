@@ -1,0 +1,42 @@
+{% extends 'tamplate.html.twig' %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Adress</th>
+                <th>Phone</th>
+                <th>Mail</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contact in contacts %}
+            <tr>
+
+                <td>{{ contact.adress }}</td>
+                <td>{{ contact.phone }}</td>
+                <td>{{ contact.mail }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('contact_delete', { 'id': contact.id }) }}">delete</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('contact_edit', { 'id': contact.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('contact_new') }}">Create a new contact</a>
+        </li>
+    </ul>
+{% endblock %}

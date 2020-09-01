@@ -1,0 +1,43 @@
+{% extends 'tamplate.html.twig' %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Typeofeducaion</th>
+                <th>Descrption</th>
+                <th>Datedeb</th>
+                <th>Datefin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for education in educations %}
+            <tr>
+
+                <td>{{ education.typeofeducaion }}</td>
+                <td>{{ education.descrption }}</td>
+                <td>{% if education.dateDeb %}{{ education.dateDeb|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if education.dateFin %}{{ education.dateFin|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('education_delete', { 'id': education.id }) }}">delete</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('education_edit', { 'id': education.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('education_new') }}">Create a new education</a>
+        </li>
+    </ul>
+{% endblock %}

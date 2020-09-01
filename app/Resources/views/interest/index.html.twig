@@ -1,0 +1,40 @@
+{% extends 'tamplate.html.twig' %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Interest</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for interest in interests %}
+            <tr>
+
+                <td>{{ interest.interest }}</td>
+                <td>{{ interest.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('interest_delete', { 'id': interest.id }) }}">delete</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('interest_edit', { 'id': interest.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('interest_new') }}">Create a new interest</a>
+        </li>
+    </ul>
+{% endblock %}

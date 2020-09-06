@@ -1,3 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- Simple Page Needs
+    ================================================== -->
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Mat - Resume & vCard HTML Template">
+    <meta name="keywords" content="personal, vcard, portfolio">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon
+    ================================================== -->
+    <link href="{{ asset('favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"  type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/cubeportfolio.min.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/yellow.css') }}" type="text/css" id="color"/>
+
+
+    <!-- Google Web fonts
+    ================================================== -->
+    <link href="{{ asset('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900') }}" rel="stylesheet">
+
+    <!-- Font Icons
+    ================================================== -->
+    <link rel="stylesheet" href="{{ asset('icon-fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('icon-fonts/web-design/flaticon.css') }}"  type="text/css"/>
+
+    <!--[if lt IE 9]>
+    <script src="{{ asset('http://html5shim.googlecode.com/svn/trunk/html5.js') }}"></script>
+    <![endif]-->
+
+</head>
+<body>
 {% trans_default_domain 'FOSUserBundle' %}
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
@@ -6,3 +48,16 @@
         <input type="submit" value="{{ 'registration.submit'|trans }}" />
     </div>
 {{ form_end(form) }}
+
+<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+<script src="{{ asset('js/jquery.cubeportfolio.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/jquery.easytabs.min.js') }}"></script>
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+<!-- for color alternatives -->
+
+
+
+</body>
+</html>

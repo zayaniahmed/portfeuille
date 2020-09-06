@@ -1,0 +1,22 @@
+
+
+<div class="row">
+    <section class="services line graybg col-md-12 padding_50 padbot_50">
+        <div class="section-title bottom_45"><span></span><h2>My interests</h2></div>
+        <div class="row">
+            <!-- a service -->
+            {% for interest in interests %}
+                <div >
+                    <div class="education">
+
+                        <span class="title">{{ interest.interest }}</span>
+
+
+                        <p class="little-text">{{ interest.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </section>
+</div>

@@ -1,0 +1,13 @@
+<div class="working-history col-md-6 padding_15 padbot_30">
+    <ul class="timeline col-md-12 top_30">
+        <li><i class="fa fa-suitcase" aria-hidden="true"></i><h2 class="timeline-title">Working History</h2></li>
+        <!-- a work -->
+        {% for workexperience in workexperiences %}
+            <li><h3 class="line-title">{{ workexperience.expeiences }}</h3>
+                <span>{% if workexperience.dateDebut %}{{ workexperience.dateDebut|date('Y-m-d') }}{% endif %} - {% if workexperience.dateFin %}{{ workexperience.dateFin|date('Y-m-d') }}{% endif %}</span>
+                <p class="little-text">{{ workexperience.descrpiton }}</p>
+            </li>
+            <!-- a work -->
+        {% endfor %}
+    </ul>
+</div>

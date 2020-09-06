@@ -1,0 +1,19 @@
+<div id="contact">
+    <div class="row">
+        <!-- Contact Form -->
+
+        <!-- Contact Informations -->
+        <section class="contact-info col-md-6 padding_30 padbot_45">
+            <div class="section-title top_15 bottom_30"><span></span><h2>Contact Informations</h2></div>
+            {% for contact in contacts %}
+                <ul>
+                    <li><span>Address:</span> {{ contact.adress }}</li>
+                    <li><span>Phone:</span> {{ contact.phone }}</li>
+                    <li><span>E-mail:</span> {{ contact.mail }}</li>
+                </ul>
+            {% endfor %}
+        </section>
+        <!-- Contact Map -->
+
+    </div>
+</div>
